@@ -1,0 +1,28 @@
+{
+  "name": "@systran/systran-slack-commands",
+  "version": "1.0.0",
+  "description": "SYSTRAN slack commands",
+  "main": "index.js",
+  "license": "Apache-2.0",
+  "scripts": {
+    "prepublish": "gulp",
+    "start": "node systran-slack-commands.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "SYSTRAN S.A.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SYSTRAN/systran-slack-commands.git"
+  },
+  "dependencies": {
+    "lodash": "^4.0.0",
+    "request": "^2.67.0",
+    "restify": "^4.0.3"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-jshint": "^2.0.0",
+    "jshint": "^2.8.0",
+    "jshint-stylish": "^2.1.0"
+  }
+}
