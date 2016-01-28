@@ -2,7 +2,7 @@
   "name": "@systran/systran-slack-commands",
   "version": "1.0.0",
   "description": "SYSTRAN slack commands",
-  "main": "index.js",
+  "main": "systran-slack-commands.js",
   "license": "Apache-2.0",
   "scripts": {
     "prepublish": "gulp",
