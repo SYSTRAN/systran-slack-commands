@@ -193,14 +193,14 @@ function cmdTranslate(req, res, next) {
   }
 
   console.log('text', text);
+  var targetLang;
 
   if (! text || text === 'help') {
     res.json(helpTranslate());
   } else if (text === 'languages') {
     res.send('The available target languages are ' + targets.join(', '));
-  } else if (text.length > 3 && targets.indexOf(text.substr(0, 2)) !== -1 && text[2] === ' ') {
-    var targetLang = text.substr(0, 2);
-    text = text.substr(3);
+  } else if (targets.some(function(t) { targetLang = t; return text.indexOf(t) === 0; })) {
+    text = text.substr(targetLang.length + 1);
     console.log('Translate to', targetLang, text);
 
     detectLanguage(text, function(err, lang) {
@@ -257,15 +257,17 @@ function cmdDictionary(req, res, next) {
   }
 
   console.log('text', text);
+  var lp;
 
   if (! text || text === 'help') {
     res.json(helpDictionary());
   } else if (text === 'languages') {
     res.send('The available language pairs are ' + lps.join(', '));
-  } else if (text.length > 6 && lps.indexOf(text.substr(0, 5)) !== -1 && text[5] === ' ') {
-    var sourceLang = text.substr(0, 2);
-    var targetLang = text.substr(3, 2);
-    text = text.substr(6);
+  } else if (lps.some(function(e) { lp = e; return text.indexOf(e) === 0; })) {
+    var pos = lp.indexOf(' ');
+    var sourceLang = lp.substr(0, pos);
+    var targetLang = lp.substr(pos + 1);
+    text = text.substr(lp.length + 1);
     console.log('Dictionary lookup', sourceLang, targetLang, text);
 
     dictionary(text, sourceLang, targetLang, function(err, output) {
